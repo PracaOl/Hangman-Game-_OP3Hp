@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dokument</title>
+</head>
+<body>
+	<h1>Wisielec</h1>
+	<img src="e" alt="TekstAlternatywny" id="imge">
+	<p id="HasloMiejsce">???</p>
+	<p id="ProbyMiejsce">Liczba Prob 0/8</p>
+	<style>
+		#HasloMiejsce {
+			text-align: right;
+			margin-right: 10%;
+		}
+		#ProbyMiejsce {
+			text-align: left;
+		}
+		.Przycisk {
+			text-align: center;
+			display: inline-block;
+		}
+		img {
+			width: 400;
+			height: 400;
+		}
+	</style>
+	<script>
+		var liczba = 0;
+		var sprawdz = false;
+		var zgadnij;
+		var litery = [];
+		var haslo;
+		var proby = 0;
+		let tabelaA = Array()
+		for (let A=65; A<91; A++) {
+			tabelaA.push(String.fromCharCode(A));
+		}
+		console.log(tabelaA);
+		for (let l = 0; l < tabelaA.length; l++) {
+		let e = document.createElement('button');
+		e.addEventListener ('click', funkcjaA);
+		e.classList.add('Przycisk');
+		e.innerHTML = (tabelaA[l]);
+		document.body.appendChild(e);
+		function funkcjaA() {
+				zgadnij = (tabelaA[l]);
+				event.srcElement.disabled = true;
+				for (var re= 0; re < haslo.length; re++) {
+					if (zgadnij === haslo[re]) {
+						litery[re] = zgadnij;
+						document.getElementById("HasloMiejsce").innerHTML = litery.join(" ");
+						sprawdz = true;
+						liczba++;
+					}
+				}
+				if (!sprawdz) {
+					proby++;
+					console.log(proby);
+					document.getElementById('ProbyMiejsce').innerHTML = "Liczba prob: " + proby + "/8";
+					if (proby == 1) {
+						document.getElementById('imge').src = "e1.png";
+					}
+					if (proby == 2) {
+						document.getElementById('imge').src = "e2.png";
+					}
+					if (proby == 3) {
+						document.getElementById('imge').src = "e3.png";
+					}
+					if (proby == 4) {
+						document.getElementById('imge').src = "e4.png";
+					}
+					if (proby == 5) {
+						document.getElementById('imge').src = "e5.png";
+					}
+					if (proby == 6) {
+						document.getElementById('imge').src = "e6.png";
+					}
+					if (proby == 7) {
+						document.getElementById('imge').src = "e7.png";
+					}
+					if (proby >= 8) {
+						document.getElementById('imge').src = "e8.png";
+						alert ("Przegrales!");
+					}
+				}
+				if (sprawdz) {
+					sprawdz = false;
+				}
+				if (liczba === haslo.length) {
+					alert ("Wygrales!");
+				}	
+			}
+		}
+		haslo = prompt("Podaj haslo, aby zaczac gre:");
+		haslo = haslo.toUpperCase();
+		for (var r= 0; r < haslo.length; r++) {
+			litery[r] = "_";
+			document.getElementById("HasloMiejsce").innerHTML = litery.join(" ");
+		}
+		console.log(litery[r]);
+		console.log(haslo);
+	</script>
+</body>
+</html>
